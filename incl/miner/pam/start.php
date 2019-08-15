@@ -24,6 +24,26 @@ class Start{
         if(!isset(Def\Route::$uri_parts[1])){
             Def\Opt::$main_content='odfgdiomgjiodg   jijfg ifig if jgijfg ijfig ifgjifj fi ijo';
             //$this->viewList();
+            $user_agent = $_SERVER["HTTP_USER_AGENT"];
+            if (strpos($user_agent, "Firefox") !== false) $browser = "Firefox";
+            elseif (strpos($user_agent, "OPR") !== false) $browser = "Opera";
+            elseif (strpos($user_agent, "Chrome") !== false) $browser = "Chrome";
+            elseif (strpos($user_agent, "MSIE") !== false) $browser = "Internet Explorer";
+            elseif (strpos($user_agent, "Safari") !== false) $browser = "Safari";
+            else $browser = "Неизвестный";
+            Def\Opt::$main_content.="<br>Ваш браузер: $browser ".$user_agent;
+            $DB=new Def\SQLi();
+
+            //$user_agent='sd';
+
+            $sql='INSERT INTO user_agent (browser) VALUES ('.$DB->realEscapeStr($user_agent).');';
+
+            $res=$DB->boolSQL($sql);
+
+            if($res)Def\Opt::$main_content.='<br><br>111<br><br>';
+            else Def\Opt::$main_content.='<br><br>000<br><br>';
+
+            Def\Opt::$main_content.=$sql.'<br>';
         }else Def\Route::$module404=true;
     }
 
