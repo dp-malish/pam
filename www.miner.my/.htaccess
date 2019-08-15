@@ -1,0 +1,12 @@
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+RewriteEngine on
+RewriteBase /
+Options +FollowSymlinks
+#RewriteCond %{HTTP_HOST} ^www.site.com [OR]
+#RewriteCond %{SERVER_PORT} !^443$ [OR]
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://site.com/$1 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) /?%{QUERY_STRING}
