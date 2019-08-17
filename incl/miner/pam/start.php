@@ -22,7 +22,27 @@ class Start{
 
     function __construct(){
         if(!isset(Def\Route::$uri_parts[1])){
-            Def\Opt::$main_content='odfgdiomgjiodg   jijfg ifig if jgijfg ijfig ifgjifj fi ijo';
+
+            $hash='4eb2ed3210f93b0cfac36baedcccf478';
+            Def\Opt::$main_content=$hash;
+
+            $hash_arr=[];
+
+
+            $hash_arr[]=substr($hash, 0,3);
+            $hash_arr[]=substr($hash, 3,1);
+            $hash_arr[]=substr($hash, 4,7);
+
+            foreach ($hash_arr as $v) {
+                Def\Opt::$main_content.='<br>'.$v.'<br>';
+                //$value = $value * 2;
+
+
+
+            }
+
+
+
             //$this->viewList();
             $user_agent = $_SERVER["HTTP_USER_AGENT"];
             if (strpos($user_agent, "Firefox") !== false) $browser = "Firefox";
@@ -31,7 +51,7 @@ class Start{
             elseif (strpos($user_agent, "MSIE") !== false) $browser = "Internet Explorer";
             elseif (strpos($user_agent, "Safari") !== false) $browser = "Safari";
             else $browser = "Неизвестный";
-            Def\Opt::$main_content.="<br>Ваш браузер: $browser ".$user_agent;
+            Def\Opt::$main_content.="<br>Ваш браузер: $browser <br>".$user_agent;
             $DB=new Def\SQLi();
 
             //$user_agent='sd';
@@ -40,7 +60,7 @@ class Start{
 
             $res=$DB->boolSQL($sql);
 
-            if($res)Def\Opt::$main_content.='<br><br>111<br><br>';
+            if($res)Def\Opt::$main_content.='<br><br>$browser добавлено<br><br>';
             else Def\Opt::$main_content.='<br><br>000<br><br>';
 
             Def\Opt::$main_content.=$sql.'<br>';
